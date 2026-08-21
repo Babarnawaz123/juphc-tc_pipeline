@@ -3,17 +3,30 @@ kind: Pipeline
 metadata:
   name: tax-calculator-pipeline
 spec:
+  workspaces:
+    - name: pipeline-workspace
   tasks:
     - name: npminstall
       taskRef:
         name: npm
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
+
     - name: tests
       taskRef:
         name: jasmine
       runAfter:
         - npminstall
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
+
     - name: build
       taskRef:
         name: buildah
       runAfter:
         - tests
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
