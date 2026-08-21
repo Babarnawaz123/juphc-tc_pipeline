@@ -7,7 +7,7 @@ spec:
     name: tax-calculator-pipeline
   params:
     - name: repo-url
-      value: "https://github.com/Babarnawaz123/tax-calculator-project.git"
+      value: "https://github.com/Babarnawaz123/juphc-tc_pipeline.git"
   workspaces:
     - name: pipeline-workspace
       emptyDir: {}
