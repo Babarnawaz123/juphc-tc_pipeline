@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-push-task
+spec:
+  workspaces:
+    - name: source
+  params:
+    - name: image
+      type: string
+  steps:
+    - name: build-and-push
+      image: gcr.io/kaniko-project/executor:v1.9.0-debug
+      command: [/kaniko/executor]
+      args:
+        - --dockerfile=$(workspaces.source.path)/Dockerfile
+        - --context=$(workspaces.source.path)
+        - --destination=$(params.image)
