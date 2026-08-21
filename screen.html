@@ -1,0 +1,21 @@
+$ kubectl set image deployment/tax-calculator-deploy tax-calculator=us.icr.io/my_namespace/tax-calculator:latest
+deployment.apps/tax-calculator-deploy image updated
+
+$ kubectl get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+tax-calculator-deploy-7b89f5d6-a1b2c     1/1     Running   0          45s
+
+$ curl localhost:80
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tax Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tax Calculator</h1>
+    <script src="script.js"></script>
+    <script src="taxCalculator.js"></script>
+</body>
+</html>
